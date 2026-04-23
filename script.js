@@ -1033,6 +1033,30 @@
     }
   };
 
+  const setPanelToggleIcon = (button, expanded, animate = false) => {
+    const icon = button.querySelector("i");
+    if (!icon) return;
+
+    icon.classList.remove(
+      "fa-minus",
+      "fa-plus",
+      "fa-xmark",
+      "fa-chevron-up",
+      "fa-chevron-down",
+      "icon-plus",
+      "icon-close",
+      "icon-swap"
+    );
+
+    icon.classList.add(expanded ? "fa-xmark" : "fa-plus");
+    icon.classList.add(expanded ? "icon-close" : "icon-plus");
+
+    if (animate) {
+      void icon.offsetWidth;
+      icon.classList.add("icon-swap");
+    }
+  };
+
   const togglePanelBody = (button) => {
     const bodyId = button.dataset.togglePanel;
     if (!bodyId) return;
@@ -1043,16 +1067,7 @@
     button.setAttribute("aria-expanded", String(nextExpanded));
     body.hidden = !nextExpanded;
     button.classList.toggle("is-expanded", nextExpanded);
-
-    const icon = button.querySelector("i");
-    if (icon) {
-      icon.classList.remove("fa-minus", "fa-xmark", "fa-chevron-up", "fa-chevron-down");
-      icon.classList.add("fa-plus");
-    }
-
-    button.classList.remove("is-toggling");
-    void button.offsetWidth;
-    button.classList.add("is-toggling");
+    setPanelToggleIcon(button, nextExpanded, true);
   };
 
   const handleGlobalShortcuts = (event) => {
@@ -1164,14 +1179,9 @@
 
     if (dom.panelToggleButtons && dom.panelToggleButtons.length) {
       dom.panelToggleButtons.forEach((button) => {
-        const icon = button.querySelector("i");
         const expanded = button.getAttribute("aria-expanded") === "true";
         button.classList.toggle("is-expanded", expanded);
-
-        if (icon) {
-          icon.classList.remove("fa-minus", "fa-xmark", "fa-chevron-up", "fa-chevron-down");
-          icon.classList.add("fa-plus");
-        }
+        setPanelToggleIcon(button, expanded, false);
 
         button.addEventListener("click", () => togglePanelBody(button));
       });
