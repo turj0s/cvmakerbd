@@ -64,6 +64,10 @@ body {
   z-index: 1400;
 }
 
+.app-navbar.sticky-top {
+  z-index: 2000 !important;
+}
+
 .brand-dot {
   width: 14px;
   height: 14px;
@@ -972,10 +976,10 @@ body {
     padding-right: 0.2rem;
   }
 
-  .preview-shell {
-    position: relative;
-    z-index: 1;
-    top: 5.8rem;
+  .preview-shell.sticky-lg-top {
+    position: sticky !important;
+    top: 5.8rem !important;
+    z-index: 10 !important;
   }
 }
 
