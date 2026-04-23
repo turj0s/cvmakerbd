@@ -571,8 +571,12 @@ body {
     display: none;
   }
 
-  body[data-mobile-mode="preview"] .app-navbar .container-fluid > div:last-child {
+  body[data-mobile-mode="edit"] .app-navbar .container-fluid > div:last-child {
     display: none !important;
+  }
+
+  body[data-mobile-mode="preview"] .app-navbar .container-fluid > div:last-child {
+    display: flex !important;
   }
 
   body[data-mobile-mode="edit"] #previewColumn {
