@@ -978,7 +978,7 @@ body {
 
   .preview-shell.sticky-lg-top {
     position: sticky !important;
-    top: 5.8rem !important;
+    top: 0 !important;
     z-index: 10 !important;
   }
 }
