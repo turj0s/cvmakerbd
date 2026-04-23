@@ -547,33 +547,6 @@ body {
   min-height: 44px;
 }
 
-.mobile-download-fab {
-  display: none;
-  position: fixed;
-  right: 0.75rem;
-  bottom: calc(4.35rem + env(safe-area-inset-bottom, 0px));
-  z-index: 1350;
-  border: 1px solid rgba(146, 74, 52, 0.3);
-  border-radius: 999px;
-  padding: 0.58rem 0.86rem;
-  background: linear-gradient(145deg, #cf6a4c, #b35f45);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 700;
-  line-height: 1;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
-  align-items: center;
-  gap: 0.42rem;
-}
-
-.mobile-download-fab:hover {
-  transform: translateY(-1px);
-  filter: saturate(1.05);
-}
-
-.mobile-download-fab:active {
-  transform: translateY(0);
-}
 
 @media (max-width: 991.98px) {
   main {
@@ -592,10 +565,6 @@ body {
   body[data-mobile-mode="preview"] .mobile-mode-toggle,
   body[data-mobile-mode="edit"] .mobile-mode-toggle {
     display: grid !important;
-  }
-
-  body[data-mobile-mode="preview"] .mobile-download-fab {
-    display: inline-flex;
   }
 
   body[data-mobile-mode="preview"] #editorColumn {
@@ -912,13 +881,6 @@ body {
     left: 0.5rem;
     right: 0.5rem;
     transform: none;
-  }
-
-  .mobile-download-fab {
-    right: 0.56rem;
-    bottom: calc(4.15rem + env(safe-area-inset-bottom, 0px));
-    padding: 0.55rem 0.76rem;
-    font-size: 0.76rem;
   }
 
   body[data-mobile-mode="preview"] #previewColumn {

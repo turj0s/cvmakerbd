@@ -112,7 +112,6 @@
     addVolunteerBtn: document.getElementById("addVolunteerBtn"),
     resetDataBtn: document.getElementById("resetDataBtn"),
     downloadPdfBtn: document.getElementById("downloadPdfBtn"),
-    mobileDownloadBtn: document.getElementById("mobileDownloadBtn"),
     mobileEditBtn: document.getElementById("mobileEditBtn"),
     mobilePreviewBtn: document.getElementById("mobilePreviewBtn"),
     fitWidthBtn: document.getElementById("fitWidthBtn"),
@@ -1153,9 +1152,6 @@
     dom.addVolunteerBtn.addEventListener("click", addVolunteer);
 
     dom.downloadPdfBtn.addEventListener("click", downloadPDF);
-    if (dom.mobileDownloadBtn) {
-      dom.mobileDownloadBtn.addEventListener("click", downloadPDF);
-    }
 
     dom.mobileEditBtn.addEventListener("click", () => setMobileMode("edit"));
     dom.mobilePreviewBtn.addEventListener("click", () => setMobileMode("preview"));
