@@ -61,6 +61,7 @@ body {
   backdrop-filter: blur(12px);
   background: rgba(253, 251, 247, 0.8);
   border-bottom: 1px solid rgba(92, 90, 84, 0.1);
+  z-index: 1400;
 }
 
 .brand-dot {
@@ -972,6 +973,8 @@ body {
   }
 
   .preview-shell {
+    position: relative;
+    z-index: 1;
     top: 5.8rem;
   }
 }
