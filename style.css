@@ -1092,13 +1092,6 @@ textarea.form-control {
     padding: 0.72rem;
   }
 
-  body[data-mobile-mode="preview"] .app-navbar .container-fluid > div:last-child {
-    display: none !important;
-  }
-
-  body[data-mobile-mode="preview"] .app-navbar .container-fluid {
-    justify-content: center;
-  }
 }
 
 @media (max-width: 575.98px) {
