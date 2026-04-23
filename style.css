@@ -910,3 +910,218 @@ body {
     top: 5.8rem;
   }
 }
+
+/* UI/UX refinement layer */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  letter-spacing: 0.01em;
+}
+
+.app-navbar {
+  box-shadow: 0 10px 28px rgba(51, 45, 38, 0.08);
+}
+
+.app-navbar .container-fluid {
+  gap: 0.8rem;
+}
+
+.panel-title {
+  letter-spacing: 0.12px;
+}
+
+.panel-subtitle {
+  max-width: 56ch;
+}
+
+.form-panel {
+  border: 1px solid rgba(131, 116, 98, 0.12);
+}
+
+.form-panel,
+.editor-toolbar,
+.paper-frame,
+.mobile-mode-toggle {
+  animation: liftIn 280ms ease both;
+}
+
+.form-control,
+.btn,
+.panel-toggle-btn,
+.dynamic-item,
+.count-pill,
+.save-badge {
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, color 180ms ease;
+}
+
+.btn-brand,
+.btn-outline-brand {
+  min-height: 40px;
+}
+
+.btn-brand:hover,
+.btn-outline-brand:hover {
+  transform: translateY(-1px);
+}
+
+.btn-brand:active,
+.btn-outline-brand:active {
+  transform: translateY(0);
+}
+
+.form-control {
+  min-height: 46px;
+}
+
+textarea.form-control {
+  min-height: 110px;
+}
+
+.form-control:focus-visible,
+.btn:focus-visible,
+.panel-toggle-btn:focus-visible {
+  outline: 3px solid rgba(207, 106, 76, 0.2);
+  outline-offset: 1px;
+}
+
+.editor-toolbar {
+  border-color: rgba(111, 97, 81, 0.2);
+}
+
+.jump-pills .btn {
+  border-width: 1.5px;
+}
+
+.dynamic-item-head .btn {
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.paper-frame {
+  border: 1px solid rgba(85, 73, 57, 0.12);
+}
+
+.cv-paper {
+  border-radius: 0.38rem;
+  border: 1px solid #ece4d7;
+}
+
+.mobile-mode-toggle {
+  border-radius: 1.05rem;
+  backdrop-filter: blur(10px);
+}
+
+.mobile-mode-toggle .btn {
+  min-height: 46px;
+}
+
+@media (max-width: 991.98px) {
+  .editor-shell {
+    padding-bottom: 0.25rem;
+  }
+
+  .editor-toolbar {
+    margin-bottom: 0.9rem !important;
+    border-radius: 0.85rem;
+  }
+
+  .jump-pills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .jump-pills .btn {
+    width: 100%;
+    min-height: 36px;
+    font-size: 0.76rem;
+  }
+
+  .editor-meta {
+    gap: 0.68rem;
+  }
+
+  .section-counts {
+    justify-content: center;
+  }
+
+  .count-pill {
+    font-size: 0.75rem;
+    padding: 0.28rem 0.62rem;
+  }
+
+  .form-label {
+    font-size: 0.82rem;
+  }
+
+  .form-control {
+    font-size: 0.94rem;
+    padding: 0.68rem 0.86rem;
+  }
+
+  .paper-frame {
+    border-radius: 0.9rem;
+    padding: 0.72rem;
+  }
+
+  body[data-mobile-mode="preview"] .app-navbar .container-fluid > div:last-child {
+    display: none !important;
+  }
+
+  body[data-mobile-mode="preview"] .app-navbar .container-fluid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .app-navbar .container-fluid > div:last-child {
+    gap: 0.45rem;
+  }
+
+  .app-navbar .container-fluid > div:last-child .btn {
+    min-height: 44px;
+    font-size: 0.82rem;
+  }
+
+  .mobile-mode-toggle {
+    border-radius: 1rem;
+    padding: 0.35rem;
+  }
+
+  .mobile-mode-toggle .btn {
+    min-height: 44px;
+    font-size: 0.82rem;
+  }
+
+  body[data-mobile-mode="preview"] .paper-frame {
+    min-height: calc(100dvh - 11.6rem);
+  }
+
+  .cv-name {
+    line-height: 1.06;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes liftIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
