@@ -831,7 +831,7 @@ body {
   .app-navbar .container-fluid > div:last-child {
     width: 100%;
     display: grid !important;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 0.5rem;
   }
 

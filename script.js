@@ -112,7 +112,6 @@
     addVolunteerBtn: document.getElementById("addVolunteerBtn"),
     resetDataBtn: document.getElementById("resetDataBtn"),
     downloadPdfBtn: document.getElementById("downloadPdfBtn"),
-    downloadDocxBtn: document.getElementById("downloadDocxBtn"),
     mobileEditBtn: document.getElementById("mobileEditBtn"),
     mobilePreviewBtn: document.getElementById("mobilePreviewBtn"),
     fitWidthBtn: document.getElementById("fitWidthBtn"),
@@ -1058,10 +1057,6 @@
     if (key !== "s") return;
 
     event.preventDefault();
-    if (event.shiftKey) {
-      downloadDOCX();
-      return;
-    }
     downloadPDF();
   };
 
@@ -1123,36 +1118,6 @@
     }
   };
 
-  const downloadDOCX = async () => {
-    if (!window.docshift || typeof window.docshift.toDocx !== "function") {
-      alert("Word export library failed to load. Please check your internet connection and try again.");
-      return;
-    }
-
-    setBusy(dom.downloadDocxBtn, true, "Building Word...", '<i class="fa-solid fa-file-word me-2"></i>Download Word');
-    const oldScale = dom.cvRoot.style.getPropertyValue("--paper-scale");
-
-    try {
-      dom.cvRoot.style.setProperty("--paper-scale", "1");
-      const docxBlob = await window.docshift.toDocx(dom.cvRoot);
-      const url = URL.createObjectURL(docxBlob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "resume.docx";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error(error);
-      alert("Could not generate Word document. Please try again.");
-    } finally {
-      dom.cvRoot.style.setProperty("--paper-scale", oldScale || "1");
-      setBusy(dom.downloadDocxBtn, false, "", '<i class="fa-solid fa-file-word me-2"></i>Download Word');
-      queueScaleRefresh();
-    }
-  };
-
   const attachListeners = () => {
     dom.form.addEventListener("input", handleFormInput);
     dom.form.addEventListener("click", handleFormClick);
@@ -1166,7 +1131,6 @@
     dom.addVolunteerBtn.addEventListener("click", addVolunteer);
 
     dom.downloadPdfBtn.addEventListener("click", downloadPDF);
-    dom.downloadDocxBtn.addEventListener("click", downloadDOCX);
 
     dom.mobileEditBtn.addEventListener("click", () => setMobileMode("edit"));
     dom.mobilePreviewBtn.addEventListener("click", () => setMobileMode("preview"));
