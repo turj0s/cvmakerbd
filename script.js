@@ -1052,6 +1052,7 @@
     icon.classList.add(expanded ? "icon-close" : "icon-plus");
 
     if (animate) {
+      icon.classList.remove("icon-swap");
       void icon.offsetWidth;
       icon.classList.add("icon-swap");
     }
