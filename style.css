@@ -875,6 +875,11 @@ body {
     gap: 0.5rem;
   }
 
+  body[data-mobile-mode="preview"] .app-navbar .container-fluid > div:last-child {
+    display: flex !important;
+    justify-content: flex-end;
+  }
+
   .app-navbar .container-fluid > div:last-child .btn {
     width: 100%;
     white-space: nowrap;
