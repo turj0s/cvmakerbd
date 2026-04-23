@@ -269,9 +269,7 @@
       const raw = localStorage.getItem(PREVIEW_PREFS_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw);
-      if (parsed.fitMode === "page" || parsed.fitMode === "width") {
-        previewPrefs.fitMode = parsed.fitMode;
-      }
+      previewPrefs.fitMode = "width";
       previewPrefs.highContrast = Boolean(parsed.highContrast);
     } catch (error) {
       console.error("Failed to parse preview preferences", error);
@@ -1024,7 +1022,14 @@
     dom.mobilePreviewBtn.classList.toggle("btn-brand", !isEdit);
     dom.mobilePreviewBtn.classList.toggle("btn-outline-brand", isEdit);
 
-    if (!isEdit) queueScaleRefresh();
+    if (!isEdit) {
+      const isMobileViewport = window.matchMedia("(max-width: 991.98px)").matches;
+      if (isMobileViewport && previewPrefs.fitMode !== "width") {
+        previewPrefs.fitMode = "width";
+      }
+      applyPreviewPrefs();
+      queueScaleRefresh();
+    }
   };
 
   const togglePanelBody = (button) => {

@@ -543,6 +543,20 @@ body {
     padding-bottom: calc(7.25rem + env(safe-area-inset-bottom, 0px)) !important;
   }
 
+  .mobile-mode-toggle {
+    left: 0.6rem;
+    right: 0.6rem;
+    width: auto;
+    transform: none;
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    z-index: 1300;
+  }
+
+  body[data-mobile-mode="preview"] .mobile-mode-toggle,
+  body[data-mobile-mode="edit"] .mobile-mode-toggle {
+    display: grid !important;
+  }
+
   body[data-mobile-mode="preview"] #editorColumn {
     display: none;
   }
@@ -633,6 +647,7 @@ body {
 
   body[data-mobile-mode="preview"] main {
     padding-top: 0.5rem !important;
+    padding-bottom: calc(7.9rem + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   body[data-mobile-mode="preview"] .app-navbar {
@@ -701,6 +716,7 @@ body {
   body[data-mobile-mode="preview"] .paper-frame {
     background: linear-gradient(165deg, #efe5d8 0%, #e7dcc9 45%, #ddd1be 100%);
     border: 1px solid rgba(82, 76, 67, 0.14);
+    min-height: calc(100svh - 11.8rem);
     box-shadow:
       0 3px 12px rgba(0, 0, 0, 0.05),
       0 18px 40px rgba(0, 0, 0, 0.09);
@@ -846,6 +862,9 @@ body {
   .mobile-mode-toggle {
     width: calc(100vw - 1rem);
     bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    left: 0.5rem;
+    right: 0.5rem;
+    transform: none;
   }
 
   body[data-mobile-mode="preview"] #previewColumn {
@@ -855,7 +874,7 @@ body {
 
   body[data-mobile-mode="preview"] .paper-frame {
     padding: 0.62rem;
-    min-height: calc(100dvh - 12.8rem);
+    min-height: calc(100svh - 11.2rem);
   }
 
   .mobile-preview-toolbar {
