@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Maker BD</title>
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPVfS4U26w3VdLx9Y64A7+qR9E4P8r4Ww3i7Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-bg-blob blob-one"></div>
+    <div class="page-bg-blob blob-two"></div>
+
+    <nav class="navbar app-navbar sticky-top py-3">
+      <div class="container-fluid px-3 px-lg-4">
+        <div class="d-flex align-items-center gap-2">
+          <span class="brand-dot"></span>
+          <h1 class="app-title mb-0">CV Maker BD</h1>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <span id="saveStateBadge" class="save-badge" aria-live="polite">All changes saved</span>
+          <button id="downloadPdfBtn" class="btn btn-brand" type="button">
+            <i class="fa-solid fa-file-pdf me-2"></i>Download PDF
+          </button>
+          <button id="downloadDocxBtn" class="btn btn-outline-brand" type="button">
+            <i class="fa-solid fa-file-word me-2"></i>Download Word
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container-fluid px-2 px-md-3 px-lg-4 py-3 pb-5">
+      <div class="row g-3 g-lg-4 app-grid">
+        <section class="col-12 col-lg-5" id="editorColumn">
+          <div class="editor-shell">
+            <header class="section-header mb-3">
+              <h2 class="panel-title mb-1">Edit Resume</h2>
+              <p class="panel-subtitle mb-0">Everything updates instantly in the preview.</p>
+            </header>
+
+            <div class="editor-toolbar mb-3">
+              <div class="jump-pills" aria-label="Quick section jump">
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="personalSection">Personal</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="experienceSection">Experience</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="educationSection">Education</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="skillsSection">Skills</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="projectsSection">Projects</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="certificationsSection">Certifications</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="languagesSection">Languages</button>
+                <button class="btn btn-sm btn-outline-brand" type="button" data-scroll-target="volunteerSection">Volunteer</button>
+              </div>
+
+              <div class="editor-meta mt-2">
+                <div class="section-counts">
+                  <span class="count-pill">Exp: <strong id="countExperience">0</strong></span>
+                  <span class="count-pill">Edu: <strong id="countEducation">0</strong></span>
+                  <span class="count-pill">Skills: <strong id="countSkills">0</strong></span>
+                  <span class="count-pill">Projects: <strong id="countProjects">0</strong></span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button id="undoLastBtn" class="btn btn-sm btn-outline-brand" type="button" disabled>
+                    <i class="fa-solid fa-arrow-rotate-left me-1"></i>Undo Last
+                  </button>
+                  <button id="resetDataBtn" class="btn btn-sm btn-outline-danger" type="button">
+                    <i class="fa-solid fa-rotate-left me-1"></i>Reset to Sample
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <form id="cvForm" novalidate>
+              <article id="personalSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Personal Details</h3>
+                  <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="personalSectionBody" aria-expanded="true">
+                    <i class="fa-solid fa-chevron-up"></i>
+                  </button>
+                </div>
+                <div id="personalSectionBody" class="panel-body row g-3">
+                  <div class="col-12">
+                    <label class="form-label" for="fullName">Full Name</label>
+                    <input class="form-control" id="fullName" type="text" data-path="personal.name" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="jobTitle">Job Title</label>
+                    <input class="form-control" id="jobTitle" type="text" data-path="personal.title" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" id="email" type="email" data-path="personal.email" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="phone">Phone</label>
+                    <input class="form-control" id="phone" type="text" data-path="personal.phone" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" id="location" type="text" data-path="personal.location" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="address">Address</label>
+                    <input class="form-control" id="address" type="text" data-path="personal.address" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="website">Website</label>
+                    <input class="form-control" id="website" type="text" data-path="personal.website" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="linkedin">LinkedIn</label>
+                    <input class="form-control" id="linkedin" type="text" data-path="personal.linkedin" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="github">GitHub</label>
+                    <input class="form-control" id="github" type="text" data-path="personal.github" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="dateOfBirth">Date of Birth</label>
+                    <input class="form-control" id="dateOfBirth" type="text" data-path="personal.dateOfBirth" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="nationality">Nationality</label>
+                    <input class="form-control" id="nationality" type="text" data-path="personal.nationality" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="summary">Professional Summary</label>
+                    <textarea class="form-control" id="summary" rows="4" data-path="personal.summary"></textarea>
+                  </div>
+                </div>
+              </article>
+
+              <article id="experienceSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Work Experience</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addExperienceBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add New
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="experienceSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="experienceSectionBody" class="panel-body">
+                  <div id="experienceFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+
+              <article id="educationSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Education</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addEducationBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add New
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="educationSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="educationSectionBody" class="panel-body">
+                  <div id="educationFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+
+              <article id="skillsSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Skills</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addSkillBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add Skill
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="skillsSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="skillsSectionBody" class="panel-body">
+                  <div id="skillsFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+
+              <article id="projectsSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Projects</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addProjectBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add Project
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="projectsSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="projectsSectionBody" class="panel-body">
+                  <div id="projectsFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+
+              <article id="certificationsSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Certifications</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addCertificationBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add Certification
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="certificationsSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="certificationsSectionBody" class="panel-body">
+                  <div id="certificationsFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+
+              <article id="languagesSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Languages</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addLanguageBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add Language
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="languagesSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="languagesSectionBody" class="panel-body">
+                  <div id="languagesFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+
+              <article id="volunteerSection" class="form-panel p-3 p-md-4 mb-3">
+                <div class="panel-head mb-3">
+                  <h3 class="panel-block-title mb-0">Volunteer Experience</h3>
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-brand" type="button" id="addVolunteerBtn">
+                      <i class="fa-solid fa-plus me-1"></i>Add Volunteer Role
+                    </button>
+                    <button class="btn btn-sm btn-outline-brand panel-toggle-btn" type="button" data-toggle-panel="volunteerSectionBody" aria-expanded="true">
+                      <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div id="volunteerSectionBody" class="panel-body">
+                  <div id="volunteerFields" class="dynamic-stack"></div>
+                </div>
+              </article>
+            </form>
+          </div>
+        </section>
+
+        <section class="col-12 col-lg-7" id="previewColumn">
+          <div class="preview-shell sticky-lg-top">
+            <header class="section-header mb-3 d-none d-lg-block">
+              <h2 class="panel-title mb-1">Live Preview</h2>
+              <p class="panel-subtitle mb-0">ATS-friendly, single-column layout.</p>
+            </header>
+
+            <div class="mobile-preview-toolbar d-lg-none" id="mobilePreviewToolbar" aria-label="Mobile preview controls">
+              <div class="fit-control" role="tablist" aria-label="Preview fit mode">
+                <button id="fitWidthBtn" class="btn btn-sm btn-brand" type="button" data-fit-mode="width" aria-pressed="true">
+                  <i class="fa-solid fa-arrows-left-right-to-line me-1"></i>Fit Width
+                </button>
+                <button id="fitPageBtn" class="btn btn-sm btn-outline-brand" type="button" data-fit-mode="page" aria-pressed="false">
+                  <i class="fa-solid fa-up-down me-1"></i>Fit Page
+                </button>
+              </div>
+
+              <button id="contrastToggleBtn" class="btn btn-sm btn-outline-brand" type="button" aria-pressed="false">
+                <i class="fa-solid fa-circle-half-stroke me-1"></i>High Contrast
+              </button>
+            </div>
+
+            <div id="paperFrame" class="paper-frame">
+              <span class="page-indicator" aria-hidden="true">Page 1</span>
+              <div id="cv-document-root" class="cv-paper" aria-label="Resume preview document"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="mobile-mode-toggle d-lg-none" role="tablist" aria-label="Mobile view toggle">
+      <button id="mobileEditBtn" class="btn btn-brand active" type="button" data-mode="edit">
+        <i class="fa-solid fa-pen-to-square me-2"></i>Edit
+      </button>
+      <button id="mobilePreviewBtn" class="btn btn-outline-brand" type="button" data-mode="preview">
+        <i class="fa-solid fa-eye me-2"></i>Preview
+      </button>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docshift@latest/dist/dist/docshift.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
